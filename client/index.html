@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte des Hôtels - OpenLayers</title>
+    
+    <!-- OpenLayers CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
+    
+    <!-- Style personnalisé -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- En-tête -->
+        <header>
+            <h1>🗺️ NearSpot </h1>
+            <p>Trouvez les meilleurs établissements autour de vous</p>
+        </header>
+
+        <!-- Panneau de contrôle -->
+        <div class="controls">
+            <!-- Section Localisation -->
+            <div class="location-section">
+                <h3>📍 Votre Localisation</h3>
+                
+                <div class="control-group">
+                    <label for="userAddress">Entrez votre adresse ou ville :</label>
+                    <div class="input-group">
+                        <input type="text" id="userAddress" placeholder="Ex: Tunis, Avenue Habib Bourguiba">
+                        <button id="searchLocation" class="btn btn-primary">🔍 Chercher</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <button id="useGPS" class="btn btn-secondary">
+                        📡 Utiliser ma position GPS
+                    </button>
+                </div>
+
+                <div class="control-group">
+                    <label for="radius">Rayon de recherche :</label>
+                    <select id="radius" class="select-input">
+                        <option value="1000">1 km</option>
+                        <option value="2000">2 km</option>
+                        <option value="5000" selected>5 km</option>
+                        <option value="10000">10 km</option>
+                        <option value="20000">20 km</option>
+                        <option value="50000">50 km</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="searchType">Type d'établissement :</label>
+                    <select id="searchType" class="select-input">
+                        <option value="both" selected>🏨 Hôtels ET 🍽️ Restaurants</option>
+                        <option value="hotels">🏨 Hôtels uniquement</option>
+                        <option value="restaurants">🍽️ Restaurants uniquement</option>
+                    </select>
+                </div>
+
+                <div id="locationStatus" class="location-status"></div>
+            </div>
+
+            <hr style="margin: 20px 0; border: 1px solid #dee2e6;">
+
+            <!-- Section Ajout d'hôtel -->
+            <div class="add-hotel-section">
+                <h3>➕ Ajouter un Établissement</h3>
+                
+                <div class="control-group">
+                    <label for="establishmentType">Type :</label>
+                    <select id="establishmentType" class="select-input">
+                        <option value="hotels">🏨 Hôtel</option>
+                        <option value="restaurants">🍽️ Restaurant</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="establishmentName">Nom :</label>
+                    <input type="text" id="establishmentName" placeholder="Ex: Hôtel Ritz ou Restaurant La Tour">
+                </div>
+                
+                <div class="control-group">
+                    <button id="toggleAddMode" class="btn btn-primary">
+                        📍 Activer l'ajout
+                    </button>
+                    <button id="refreshMap" class="btn btn-secondary">
+                        🔄 Rafraîchir
+                    </button>
+                </div>
+            </div>
+
+            <div class="legend">
+                <h3>Légende</h3>
+                <div class="legend-item">
+                    <span class="legend-marker" style="background: #007bff;"></span>
+                    <span>Votre position</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-marker" style="background: #dc3545;"></span>
+                    <span>🏨 Hôtels</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-marker" style="background: #28a745;"></span>
+                    <span>🍽️ Restaurants</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte -->
+        <div id="map"></div>
+
+        <!-- Popup d'information -->
+        <div id="popup" class="ol-popup">
+            <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+            <div id="popup-content"></div>
+        </div>
+
+        <!-- Messages de statut -->
+        <div id="status" class="status"></div>
+    </div>
+
+    <!-- OpenLayers JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
+    
+    <!-- Script principal -->
+    <script src="app.js"></script>
+</body>
+</html>
