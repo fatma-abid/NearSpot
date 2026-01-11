@@ -187,7 +187,7 @@ Visit `http://localhost:8000`
 
 ## 🏗️ Architecture
 
-![Architecture Diagram](images/architecture.png)
+![Architecture Diagram](images/architecture.PNG)
 
 ---
 
